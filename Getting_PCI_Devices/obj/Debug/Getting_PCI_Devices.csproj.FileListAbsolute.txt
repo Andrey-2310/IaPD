@@ -1,0 +1,6 @@
+D:\C\Visual Studio 2015\Projects\Getting_PCI_Devices\Getting_PCI_Devices\bin\Debug\Getting_PCI_Devices.exe.config
+D:\C\Visual Studio 2015\Projects\Getting_PCI_Devices\Getting_PCI_Devices\bin\Debug\Getting_PCI_Devices.exe
+D:\C\Visual Studio 2015\Projects\Getting_PCI_Devices\Getting_PCI_Devices\bin\Debug\Getting_PCI_Devices.pdb
+D:\C\Visual Studio 2015\Projects\Getting_PCI_Devices\Getting_PCI_Devices\obj\Debug\Getting_PCI_Devices.csprojResolveAssemblyReference.cache
+D:\C\Visual Studio 2015\Projects\Getting_PCI_Devices\Getting_PCI_Devices\obj\Debug\Getting_PCI_Devices.exe
+D:\C\Visual Studio 2015\Projects\Getting_PCI_Devices\Getting_PCI_Devices\obj\Debug\Getting_PCI_Devices.pdb
