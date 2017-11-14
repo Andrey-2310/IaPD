@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management;
 
 namespace Emulating_Device_Manager.DeviceDescription
 {
-    class Device
+    class Device : IDeviceOptions
     {
         private const string ClassGuidProperty = "ClassGuid";
         private const string HardwareIdProperty = "HardwareID";
@@ -12,13 +13,15 @@ namespace Emulating_Device_Manager.DeviceDescription
         private const string CaptionProperty = "Caption";
         private const string DevicePathProperty = "DeviceID";
         private const string DriverRelatedProperty = "Win32_SystemDriver";
+        private const string DisableMethod = "Disable";
+        private const string EnableMethod = "Enable";
 
-        public object Caption { get; set; }
-        private object ClassGuid { get; set; }
-        private object DevicePath { get; set; }
-        private List<Driver> Drivers { get; set; }
-        private string[] HardwareId { get; set; }
-        private object Manufactirer { get; set; }
+        public object Caption { get; }
+        private object ClassGuid { get; }
+        private object DevicePath { get; }
+        private List<Driver> Drivers { get; }
+        private string[] HardwareId { get; }
+        private object Manufactirer { get; }
 
         public Device(ManagementObject managementObject)
         {
@@ -46,6 +49,29 @@ namespace Emulating_Device_Manager.DeviceDescription
                     Console.WriteLine(hardwareId);
                 }
             return Caption + "\n" + ClassGuid + "\n" + DevicePath + "\n" + Manufactirer + "\n" + "_____________________________" + "\n";
+        }
+
+        public void EnableDevice()
+        {
+            ChangeState(EnableMethod);
+        }
+
+        public void DisableDevice()
+        {
+            ChangeState(DisableMethod);
+        }
+
+        private void ChangeState(string method)
+        {
+            ManagementObject tempCurrentElement = null;
+            var deviceList = new ManagementObjectSearcher("SELECT * FROM Win32_PNPEntity");
+            foreach (var item in deviceList.Get().OfType<ManagementObject>())
+            {
+                if (DevicePath != item["DeviceID"]) continue;
+                tempCurrentElement = item;
+                break;
+            }
+            tempCurrentElement?.InvokeMethod(method, new object[] { false });
         }
     }
 }
