@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Management;
-using System.Xml;
+using System.Runtime.Remoting.Messaging;
 using Emulating_Device_Manager.DeviceDescription;
 
 namespace Emulating_Device_Manager
@@ -15,25 +11,16 @@ namespace Emulating_Device_Manager
         public ManagementObjectSearcher ManagementSearcher { get; }
 
         private static readonly SelectQuery Query = new SelectQuery("SELECT * FROM Win32_PnPEntity");
-        private List<ManagementObject> devices = new List<ManagementObject>();
+
         public Searcher()
         {
             var scope = new ManagementScope();
             ManagementSearcher = new ManagementObjectSearcher(scope, Query);
         }
 
-        public void DriverOutput()
+        public List<Device> FindDevices()
         {
-            List<Device> devices = new List<Device>();
-            foreach (var device in ManagementSearcher.Get().OfType<ManagementObject>())
-            {
-                devices.Add(new Device(device));
-              
-            }
-            foreach (var device in devices)
-            {
-                Console.WriteLine(device.ToString());
-            }
+            return ManagementSearcher.Get().OfType<ManagementObject>().Select(device => new Device(device)).ToList();
         }
 
     }

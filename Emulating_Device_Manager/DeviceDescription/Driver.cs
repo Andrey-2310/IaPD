@@ -4,21 +4,21 @@ namespace Emulating_Device_Manager.DeviceDescription
 {
     class Driver
     {
-        private const string SysFilePath = "PathName";
-        private const string Description = "Description";
+        private const string SysFilePathProperty = "PathName";
+        private const string DescriptionProperty = "Description";
 
-        private readonly object _sysFilePath;
-        private readonly object _description;
+        public object SysFilePath { get; set; }
+        public object Description { get; set; }
 
         public Driver(ManagementBaseObject managementObject)
         {
-            _sysFilePath = managementObject[SysFilePath];
-            _description = managementObject[Description];
+            SysFilePath = managementObject[SysFilePathProperty];
+            Description = managementObject[DescriptionProperty];
         }
 
         public override string ToString()
         {
-            return _sysFilePath + "\n" + _description + "\n";
+            return "PathName: " + SysFilePath + "\r\n" + "Description: " + Description + "\r\n";
         }
     }
 }

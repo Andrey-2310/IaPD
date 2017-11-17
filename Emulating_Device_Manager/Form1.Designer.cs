@@ -1,4 +1,6 @@
-﻿namespace Emulating_Device_Manager
+﻿using System.Windows.Forms;
+
+namespace Emulating_Device_Manager
 {
     partial class Form1
     {
@@ -28,35 +30,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.DevicesListBox = new System.Windows.Forms.ListView();
+            this.DeviceInfoTextBox = new System.Windows.Forms.TextBox();
+            this.statusButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // DevicesListBox
             // 
-            this.button1.Location = new System.Drawing.Point(48, 65);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.DevicesListBox.FullRowSelect = true;
+            this.DevicesListBox.Location = new System.Drawing.Point(12, 8);
+            this.DevicesListBox.MultiSelect = false;
+            this.DevicesListBox.Name = "DevicesListBox";
+            this.DevicesListBox.Size = new System.Drawing.Size(337, 266);
+            this.DevicesListBox.TabIndex = 4;
+            this.DevicesListBox.UseCompatibleStateImageBehavior = false;
+            this.DevicesListBox.View = System.Windows.Forms.View.List;
+            this.DevicesListBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DevicesListBox_MouseClick);
+            // 
+            // DeviceInfoTextBox
+            // 
+            this.DeviceInfoTextBox.Location = new System.Drawing.Point(378, 8);
+            this.DeviceInfoTextBox.Multiline = true;
+            this.DeviceInfoTextBox.Name = "DeviceInfoTextBox";
+            this.DeviceInfoTextBox.Size = new System.Drawing.Size(335, 228);
+            this.DeviceInfoTextBox.TabIndex = 1;
+            // 
+            // statusButton
+            // 
+            this.statusButton.Location = new System.Drawing.Point(478, 251);
+            this.statusButton.Name = "statusButton";
+            this.statusButton.Size = new System.Drawing.Size(165, 23);
+            this.statusButton.TabIndex = 5;
+            this.statusButton.Text = "statusButton";
+            this.statusButton.UseVisualStyleBackColor = true;
+            this.statusButton.Click += new System.EventHandler(this.statusButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(725, 301);
+            this.Controls.Add(this.statusButton);
+            this.Controls.Add(this.DeviceInfoTextBox);
+            this.Controls.Add(this.DevicesListBox);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private ListView DevicesListBox;
+        private TextBox DeviceInfoTextBox;
+        private Button statusButton;
     }
 }
 
